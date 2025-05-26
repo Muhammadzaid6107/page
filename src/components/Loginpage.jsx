@@ -26,13 +26,18 @@ const Navigate = useNavigate()
         try {
             setIsSigningIn(true);
             await doSignInUserWithEmailAndPassword(email, password);
-            
+            Navigate("/Todoapp")
             // If you want to implement remember me functionality, you would store the token here
         } catch (error) {
             setErrorMessage(error.message);
         } finally {
             setIsSigningIn(false);
+
         }
+         if (userLoggedIn) {
+        Navigate('/Todoapp');
+        return null; // or you can return a loading spinner
+    }
     }
 
 
@@ -43,7 +48,7 @@ const Navigate = useNavigate()
 
     return (
         <div>
-            {userLoggedIn && (<Navigate to={'/Loginpage'} replace={true} />)}
+            {/* {userLoggedIn && (<Navigate to={'/Todoapp'} replace={true} />)} */}
             <div className='flex min-h-screen items-center justify-center p-4 overflow-hidden '>
                 <div className='bg-state-800 border border-white-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative '>
                     <h1 className='w-full max-w-md text-4xl font-extrabold text-whitefont-bold text-center mb-6'>Login</h1>
@@ -74,7 +79,7 @@ const Navigate = useNavigate()
                         </div>
                     </div>
 
-                    <button type = "submit" disabled={isSigningIn} className='cursor-pointer w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-black hover:bg-blue-400 hover:text-white py-2 transition-colors duration-300'>Login</button>
+                    <button type = "submit" disabled={isSigningIn} className='cursor-pointer w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-black hover:bg-blue-400 hover:text-white py-2 transition-colors duration-300'>{isSigningIn ? 'Signing In...' : 'Login'}</button>
                     </form>
                     <div>
                         <span className='m-4'>Do not have an account ? <Link to='/signup' className='text-blue-500 cursor-pointer hover:font-bold'>Register</Link></span>

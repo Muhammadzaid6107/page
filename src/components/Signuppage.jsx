@@ -77,11 +77,11 @@ const { userSignUp} = useAuth()
                 onChange={(e) => setconfirmPassword(e.target.value)} className='block w-full py-2.3 px-0 text-white bg-transparent border-0 border-b-2 border-white-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer mt-4 text-xl' placeholder='Confirm Password' required/>
 
           </div>
-          <button type='submit' disabled={isRegistering} className='cursor-pointer w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-black hover:bg-blue-400 hover:text-white py-2 transition-colors duration-300'>Sign up</button>
+          <button type='submit' disabled={isRegistering} className='cursor-pointer w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-black hover:bg-blue-400 hover:text-white py-2 transition-colors duration-300'>{isRegistering ? 'Register...' : 'Sign Up'}</button>
             </form>
           <div>
           
-            <span className='m-4'>Alredy have Account ? <Link to='/Loginpage' className='text-blue-500 cursor-pointer hover:font-bold'>login</Link></span>
+            <span className='m-10'>Alredy have Account ? <Link to='/Loginpage' className='text-blue-500 cursor-pointer hover:font-bold'>login</Link></span>
           </div>
 
         </div>

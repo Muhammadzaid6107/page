@@ -4,6 +4,7 @@ import Loginpage from './components/Loginpage'
 import Signuppage from './components/Signuppage';
 import './App.css'
 import { AuthProvider } from './contexts/AuthContexts';
+import Todoapp from './components/Todoapp';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<Loginpage />} />
             <Route path="/loginpage" element={<Loginpage />} />
             <Route path="/signup" element={<Signuppage />} />
+            <Route path="/todoapp" element ={<Todoapp />} />
           </Routes>
 
         </div>
