@@ -5,13 +5,15 @@ import { doSignInUserWithEmailAndPassword } from '../firebase/auth';
 import { useAuth } from '../contexts/AuthContexts';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { FirebaseError } from 'firebase/app';
+import firebase from 'firebase/compat/app';
 
 function Loginpage() {
-  const { userLoggedIn } = useAuth();
+  // const { userLoggedIn } = useAuth();
   const navigate = useNavigate();
   const [isSigningIn, setIsSigningIn] = React.useState(false);
 
-  // Validation schema using Yup
+  // 
   const validationSchema = Yup.object({
     email: Yup.string()
       .email('Invalid email address')
@@ -33,8 +35,7 @@ function Loginpage() {
         setIsSigningIn(true);
         await doSignInUserWithEmailAndPassword(values.email, values.password);
         navigate("/Todoapp");
-        // If you want to implement remember me functionality, 
-        // you would store the token here using values.rememberMe
+
       } catch (error) {
         formik.setStatus(error.message);
       } finally {
@@ -43,10 +44,7 @@ function Loginpage() {
     }
   });
 
-//   if (userLoggedIn) {
-//     navigate('/Todoapp');
-//     return null;
-//   }
+
 
   return (
     <div>
@@ -70,9 +68,8 @@ function Loginpage() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
-                className={`block w-full py-2 px-0 text-white bg-transparent border-0 border-b-2 ${
-                  formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-white-300'
-                } appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer text-xl`}
+                className={`block w-full py-2 px-0 text-white bg-transparent border-0 border-b-2 ${formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-white-300'
+                  } appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer text-xl`}
                 placeholder='Email'
               />
               {formik.touched.email && formik.errors.email && (
@@ -88,9 +85,8 @@ function Loginpage() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
-                className={`block w-full py-2 px-0 text-white bg-transparent border-0 border-b-2 ${
-                  formik.touched.password && formik.errors.password ? 'border-red-500' : 'border-white-300'
-                } appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer mt-4 text-xl`}
+                className={`block w-full py-2 px-0 text-white bg-transparent border-0 border-b-2 ${formik.touched.password && formik.errors.password ? 'border-red-500' : 'border-white-300'
+                  } appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer mt-4 text-xl`}
                 placeholder='Password'
               />
               {formik.touched.password && formik.errors.password && (
@@ -120,9 +116,8 @@ function Loginpage() {
             <button
               type="submit"
               disabled={isSigningIn || !formik.isValid}
-              className={`cursor-pointer w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-black hover:bg-blue-400 hover:text-white py-2 transition-colors duration-300 ${
-                isSigningIn || !formik.isValid ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+              className={`cursor-pointer w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-black hover:bg-blue-400 hover:text-white py-2 transition-colors duration-300 ${isSigningIn || !formik.isValid ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
             >
               {isSigningIn ? 'Signing In...' : 'Login'}
             </button>

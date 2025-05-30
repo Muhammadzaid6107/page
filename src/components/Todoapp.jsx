@@ -1,9 +1,11 @@
 import React from 'react'
+import { useAuth } from '../contexts/AuthContexts'
 
 function Todoapp() {
+  const { signOut } = useAuth()
   return (
     <div>
-      <a href="https://www.facebook.com/">visit it</a>
+      <div onClick={signOut}>logout</div>
     </div>
   )
 }

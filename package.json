@@ -15,7 +15,8 @@
     "formik": "^2.4.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.0",
+    "react-router-dom": "^6.30.1",
+    "react-toastify": "^11.0.5",
     "tailwindcss": "^4.1.7",
     "yup": "^1.6.1"
   },

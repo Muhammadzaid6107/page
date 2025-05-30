@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { auth } from "../../firebase/firebase";
-import { onAuthStateChanged } from "firebase/auth";
-// const AuthContext = React.createContex(); // Typo in "Context"
+import { 
+  onAuthStateChanged, 
+  signOut as firebaseSignOut 
+} from "firebase/auth";
 
 const AuthContext = React.createContext();
 
@@ -12,37 +14,43 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
     const [userLoggedIn, setUserLoggedIn] = useState(false);
-    const [loding, setLoading] = useState(true);
-
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, initializeUser);
-        return unsubscribe;
-    }, [])
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setCurrentUser(user);
+                setUserLoggedIn(true);
+            } else {
+                setCurrentUser(null);
+                setUserLoggedIn(false);
+            }
+            setLoading(false);
+        });
 
-    async function initializeUser(user) {
-        if (user) {
-            setCurrentUser({ ...user });
-            setUserLoggedIn(true);
-        } else {
-            setCurrentUser(null);
-            setUserLoggedIn(false);
+        return unsubscribe;
+    }, []);
+
+    const signOut = async () => {
+        try {
+            await firebaseSignOut(auth);
+            return true;
+        } catch (error) {
+            console.error("Error signing out:", error);
+            return false;
         }
-        setLoading(false)
-    }
+    };
 
     const value = {
         currentUser,
         userLoggedIn,
-        loding
-    }
+        loading,
+        signOut
+    };
+
     return (
-
         <AuthContext.Provider value={value}>
-            {!loding && children}
+            {!loading && children}
         </AuthContext.Provider>
-
-    )
-
-
+    );
 }

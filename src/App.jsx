@@ -1,34 +1,38 @@
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Loginpage from './components/Loginpage'
 import Signuppage from './components/Signuppage';
 import './App.css'
-import { AuthProvider } from './contexts/AuthContexts';
+import { AuthProvider, useAuth } from './contexts/AuthContexts';
 import Todoapp from './components/Todoapp';
 
+
 function App() {
-
+  const { currentUser } = useAuth()
+  console.log('currentUser:', currentUser)
   return (
-    <AuthProvider>
-
-      <div className="flex min-h-screen items-center justify-center bg-no-repeat ">
-
-        <div className='text-white  flex justify-center items-center bg-no-repeat bg-cover bg-center w-[300vh] h-full ' style={{ "background": "url('../src/assets/bgf.jpg')" }}>
 
 
+    <div className="flex min-h-screen items-center justify-center bg-no-repeat ">
 
-          <Routes>
-            <Route path="/" element={<Loginpage />} />
-            <Route path="/Loginpage" element={<Loginpage />} />
-            <Route path="/signup" element={<Signuppage />} />
-            <Route path="/todoapp" element ={<Todoapp />} />
-          </Routes>
+      <div className='text-white  flex justify-center items-center bg-no-repeat bg-cover bg-center w-[300vh] h-full ' style={{ "background": "url('../src/assets/bgf.jpg')" }}>
 
-        </div>
+
+
+        <Routes>
+          <Route path="/" element={currentUser ? (<Navigate to={'/Todoapp'} replace />) : <Loginpage />} />
+          <Route path="/signup" element={currentUser ? (<Navigate to={'/Todoapp'} replace />) : <Signuppage />} />
+          <Route path="/Todoapp" element={currentUser ? <Todoapp /> : (<Navigate to={'/'} replace />)} />
+         
+
+
+        </Routes>
+
       </div>
+    </div>
 
-    </AuthProvider>
+
   )
 }
 
-export default App;
+export default App;    
