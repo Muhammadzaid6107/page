@@ -16,6 +16,7 @@
 // export default Todoapp;
 import React, { useState } from 'react';
 // import './App.css';
+import { useAuth } from '../contexts/AuthContexts'
 
 function Todoapp() {
   const [todos, setTodos] = useState([]);
@@ -57,6 +58,7 @@ function Todoapp() {
     setEditIndex(-1);
     setEditText('');
   };
+  const { signOut } = useAuth()
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4 overflow-hidden">
@@ -118,7 +120,9 @@ function Todoapp() {
             </div>
           ))}
         </div>
+        <button onClick={signOut} className='cursor-pointer flex font-medium text-lg border-1 rounded-2xl pr-2 pl-2 hover:bg-white hover:text-black hover:border-white '>Logout</button>
       </div>
+
     </div>
   );
 }
