@@ -64,7 +64,7 @@ function Todoapp() {
         <div className="container">
           <div>
             <h1 className='w-full max-w-md text-4xl font-extrabold text-whitefont-bold text-center mb-6'>MY TODO LIST</h1>
-            <hr />
+            <hr className='text-black'/>
             <div className="flex">
               <input
                 className="`block w-full py-2 px-0 text-white bg-transparent border-0 border-b-2 mt-2 focus:outline-none"
