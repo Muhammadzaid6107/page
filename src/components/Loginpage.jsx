@@ -9,18 +9,18 @@ import { FirebaseError } from 'firebase/app';
 import firebase from 'firebase/compat/app';
 
 function Loginpage() {
-  // const { userLoggedIn } = useAuth();
+  
   const navigate = useNavigate();
   const [isSigningIn, setIsSigningIn] = React.useState(false);
 
-  // 
+  
   const validationSchema = Yup.object({
     email: Yup.string()
       .email('Invalid email address')
       .required('Email is required'),
     password: Yup.string()
       .required('Password is required'),
-    // rememberMe: Yup.boolean()
+  
   });
 
   const formik = useFormik({

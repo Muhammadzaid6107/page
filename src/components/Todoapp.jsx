@@ -1,21 +1,6 @@
-// import React from 'react'
-// import { useAuth } from '../contexts/AuthContexts'
 
-// function Todoapp() {
-//   const { signOut } = useAuth()
-//   return (
-//     <div>
-//       <div className='cursor-pointer bg-white text-red-500 pt-2 pl-2 pr-2 pb-2' onClick={signOut}>logout</div>
-
-
-
-//     </div>
-//   )
-// }
-
-// export default Todoapp;
 import React, { useState } from 'react';
-// import './App.css';
+
 import { useAuth } from '../contexts/AuthContexts'
 
 function Todoapp() {

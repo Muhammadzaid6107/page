@@ -9,7 +9,7 @@ import Todoapp from './components/Todoapp';
 
 function App() {
   const { currentUser } = useAuth()
-  // console.log('currentUser:', currentUser)
+  
   return (
 
 

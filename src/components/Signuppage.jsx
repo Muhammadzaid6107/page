@@ -13,7 +13,7 @@ function Signuppage() {
   const [isRegistering, setIsRegistering] = React.useState(false);
 
 
-  // Validation schema using Yup
+  
   const validationSchema = Yup.object({
     email: Yup.string()
       .email('Invalid email address')
@@ -40,14 +40,13 @@ function Signuppage() {
         toast.success("Successfully registered!");
         navigate('/Loginpage');
 
-        // notify;
-        // alert('You have successfully registered');
+  
       } catch (error) {
         formik.setStatus(error.message);
-        // toast.error(error.message);
+        
       } finally {
         setIsRegistering(false);
-        // toast.success("successfully registered")
+      
       }
     }
   });
