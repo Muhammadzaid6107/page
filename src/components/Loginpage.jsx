@@ -49,7 +49,7 @@ function Loginpage() {
     <div>
       <div className='flex min-h-screen items-center justify-center p-4 overflow-hidden'>
         <div className='bg-state-800 border border-white-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative'>
-          <h1 className='w-full max-w-md text-4xl font-extrabold text-whitefont-bold text-center mb-6'>Login</h1>
+          <h1 className='w-full max-w-md text-4xl font-extrabold text-whitefont-bold text-center mb-6 cursor-default'>Login</h1>
 
           {formik.status && (
             <div className='mb-4 p-2 bg-red-100 text-red-700 rounded'>

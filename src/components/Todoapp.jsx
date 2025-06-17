@@ -93,7 +93,7 @@ function Todoapp() {
       <div className="bg-state-800 border border-white-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative">
         <div className="container">
           <div>
-            <h1 className='w-full max-w-md text-4xl font-extrabold text-whitefont-bold text-center mb-6'>MY TODO LIST</h1>
+            <h1 className='w-full max-w-md text-4xl font-extrabold text-whitefont-bold text-center mb-6 cursor-default'>MY TODO LIST</h1>
             <hr className='text-white'/>
             <div className="flex">
               <input
@@ -154,7 +154,7 @@ function Todoapp() {
             </div>
           ))}
         </div>
-        <button onClick={signOut} className='cursor-pointer flex font-medium text-lg border-1 rounded-2xl pr-2 pl-2 hover:bg-white hover:text-black hover:border-white '>Logout</button>
+        <button onClick={signOut} className='cursor-pointer flex font-medium text-lg border-1 rounded-2xl pr-2 pl-2 pb-1 pt-0.5 hover:bg-white hover:text-black hover:border-white '>Logout</button>
       </div>
     </div>
   );
