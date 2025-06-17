@@ -1,6 +1,6 @@
 
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContexts';
 import { addTodo, getTodos, updateTodo, deleteTodo, toggleTodo } from '../firebase/firestore';
 
@@ -97,7 +97,7 @@ function Todoapp() {
                 value={input}
                 placeholder="Enter todo list"
                 onChange={handleInput}
-                onKeyPress={(e) => e.key === 'Enter' && addTodoItem()}
+                onKeyDown={(e) => e.key === 'Enter' && addTodoItem()}
               />
               <button className="mr-2 ml-2 mt-2 cursor-pointer hover:text-blue-800 font-bold" onClick={addTodoItem}>
                 ADD
@@ -109,7 +109,7 @@ function Todoapp() {
         <div className="mt-3 mb-1 font-medium">
           {todos.map((item, index) => (
             <div key={item.id} className="">
-              <li className="border-2 mb-2 rounded-2xl pt-2 pb-2 flex justify-between pr-1 pl-1 text-lg w-[400px]">
+              <li className=" border-2 mb-2 rounded-2xl pt-2 pb-2 flex justify-between pr-1 pl-1 text-lg w-[400px]">
                 {editIndex === index ? (
                   <>
                     <input
@@ -129,7 +129,7 @@ function Todoapp() {
                     <span 
                       onClick={() => toggleTodoStatus(item.id, item.completed)}
                       style={{ textDecoration: item.completed ? 'line-through' : 'none' }}
-                      className="cursor-pointer"
+                      className="cursor-pointer max-w-[300px] h-auto block break-words"
                     >
                       {item.text}
                     </span>

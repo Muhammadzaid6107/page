@@ -2,11 +2,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { doSignInUserWithEmailAndPassword } from '../firebase/auth';
-import { useAuth } from '../contexts/AuthContexts';
+
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { FirebaseError } from 'firebase/app';
-import firebase from 'firebase/compat/app';
+
 
 function Loginpage() {
   
@@ -125,7 +124,7 @@ function Loginpage() {
 
           <div>
             <span className='m-4'>
-              Do not have an account ?{' '}
+              Do not have an account?{' '}
               <Link to='/signup' className='text-blue-500 cursor-pointer hover:font-bold'>
                 Register
               </Link>

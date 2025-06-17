@@ -1,15 +1,13 @@
 
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContexts';
+import { Link } from 'react-router-dom';
 import { doCreateUserWithEmailAndPassword } from '../firebase/auth';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 
 function Signuppage() {
-  const { userSignUp } = useAuth();
-  const navigate = useNavigate();
+
   const [isRegistering, setIsRegistering] = React.useState(false);
 
 
@@ -124,12 +122,12 @@ function Signuppage() {
               >
                 {isRegistering ? 'Registering...' : 'Sign Up'}
               </button>
-              <ToastContainer />
+            
             </div>
           </form>
 
           <div>
-            <span className='m-10'>Already have an account? <Link to='/Loginpage' className='text-blue-500 cursor-pointer hover:font-bold'>Login</Link></span>
+            <span className='m-10'>Already have an account? <Link to='/' className='text-blue-500 cursor-pointer hover:font-bold'>Login</Link></span>
           </div>
         </div>
       </div>
