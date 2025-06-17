@@ -1,15 +1,15 @@
 
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { doSignInUserWithEmailAndPassword } from '../firebase/auth';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
+import { toast } from 'react-toastify';
 
 function Loginpage() {
   
-  const navigate = useNavigate();
+  
   const [isSigningIn, setIsSigningIn] = React.useState(false);
 
   
@@ -33,7 +33,7 @@ function Loginpage() {
       try {
         setIsSigningIn(true);
         await doSignInUserWithEmailAndPassword(values.email, values.password);
-        navigate("/Todoapp");
+        toast("Successfully Login")
 
       } catch (error) {
         formik.setStatus(error.message);

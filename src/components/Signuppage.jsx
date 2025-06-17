@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { doCreateUserWithEmailAndPassword } from '../firebase/auth';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { ToastContainer, toast } from 'react-toastify';
+
+import { toast } from 'react-toastify';
 
 function Signuppage() {
 
@@ -35,7 +36,7 @@ function Signuppage() {
       try {
         setIsRegistering(true);
         await doCreateUserWithEmailAndPassword(values.email, values.password);
-        toast.success("Successfully registered!");
+        toast.success("Successfully Registered!");
         
 
   
@@ -51,7 +52,7 @@ function Signuppage() {
 
   return (
     <div>
-      {/* {userSignUp && <Navigate to={'/Loginpage'} replace={true} />} */}
+     
       <div className='flex min-h-screen items-center justify-center p-4 overflow-hidden'>
         <div className='bg-state-800 border border-white-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative'>
           <h1 className='w-full max-w-md text-4xl font-extrabold text-whitefont-bold text-center mb-6'>Register</h1>
@@ -121,11 +122,9 @@ function Signuppage() {
                 className='cursor-pointer w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-black hover:bg-blue-400 hover:text-white py-2 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed'
               >
                 {isRegistering ? 'Registering...' : 'Sign Up'}
-              </button>
-            
+              </button>     
             </div>
           </form>
-
           <div>
             <span className='m-10'>Already have an account? <Link to='/' className='text-blue-500 cursor-pointer hover:font-bold'>Login</Link></span>
           </div>

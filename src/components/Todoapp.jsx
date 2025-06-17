@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContexts';
 import { addTodo, getTodos, updateTodo, deleteTodo, toggleTodo } from '../firebase/firestore';
-
+import { toast } from 'react-toastify';
 function Todoapp() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState('');
@@ -29,12 +29,14 @@ function Todoapp() {
 
   const handleInput = (e) => {
     setInput(e.target.value);
+
   };
 
   const addTodoItem = async () => {
     if (input.trim() !== '') {
       try {
         await addTodo(currentUser.uid, input.trim());
+        toast("successfully Addeed")
         setInput('');
         await loadTodos(); 
       } catch (error) {
@@ -47,6 +49,8 @@ function Todoapp() {
     try {
       await deleteTodo(todoId);
       await loadTodos(); 
+      toast("Delete todos");
+
     } catch (error) {
       console.error("Error deleting todo:", error);
     }
@@ -62,6 +66,7 @@ function Todoapp() {
       try {
         await updateTodo(todos[editIndex].id, editText.trim());
         await loadTodos(); 
+        toast("updated todos")
         cancelEdit();
       } catch (error) {
         console.error("Error updating todo:", error);

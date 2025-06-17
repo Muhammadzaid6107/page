@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Loginpage from './components/Loginpage'
 import Signuppage from './components/Signuppage';
 import './App.css'
-
+import { ToastContainer } from 'react-toastify';
 import { AuthProvider, useAuth } from './contexts/AuthContexts';
 import Todoapp from './components/Todoapp';
 
@@ -24,10 +24,12 @@ function App() {
           <Route path="/" element={currentUser ? (<Navigate to={'/Todoapp'} replace />) : <Loginpage />} />
           <Route path="/signup" element={currentUser ? (<Navigate to={'/Todoapp'} replace />) : <Signuppage />} />
           <Route path="/Todoapp" element={currentUser ? <Todoapp /> : (<Navigate to={'/'} replace />)} />
+          
          
 
 
         </Routes>
+        <ToastContainer/>
 
       </div>
     </div>
